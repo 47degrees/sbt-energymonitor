@@ -3,5 +3,5 @@
   if(pluginVersion == null)
     throw new RuntimeException("""|The system property 'plugin.version' is not defined.
                                   |Specify this property using the scriptedLaunchOpts -D.""".stripMargin)
-  else addSbtPlugin("com.fortysevendeg" % """sbt-energymonitor""" % pluginVersion)
+  else addSbtPlugin("com.47deg" % """sbt-energymonitor""" % pluginVersion)
 }
