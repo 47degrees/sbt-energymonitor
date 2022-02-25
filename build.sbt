@@ -32,6 +32,7 @@ inThisBuild(
       "com.disneystreaming" %% "weaver-cats" % Version.weaver % Test,
       "com.disneystreaming" %% "weaver-scalacheck" % Version.weaver % Test,
       "io.circe" %% "circe-core" % Version.circe,
+      "io.circe" %% "circe-parser" % Version.circe,
       "org.scala-sbt" %% "collections" % sbtVersion.value,
       "org.scala-sbt" %% "core-macros" % sbtVersion.value,
       "org.scala-sbt" %% "main" % sbtVersion.value,
