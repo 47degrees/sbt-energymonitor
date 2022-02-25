@@ -10,7 +10,7 @@ import org.scalacheck.cats.implicits._
 import weaver.SimpleIOSuite
 import weaver.scalacheck.Checkers
 
-import java.nio.file.Path
+import java.nio.file.Paths
 import java.time.Instant
 import java.util.concurrent.TimeUnit
 import scala.concurrent.duration._
@@ -33,7 +33,7 @@ object EnergyMonitorSpec extends SimpleIOSuite with Checkers {
 
   test("sampling moves forward through time") {
     val lagTime = 0.05.seconds
-    val outputPath = Path.of("./energy-test")
+    val outputPath = Paths.get("./energy-test")
     sRAPL.preSample(outputPath) >> IO.sleep(lagTime) >> sRAPL.postSample(
       outputPath
     ) map { diff =>
