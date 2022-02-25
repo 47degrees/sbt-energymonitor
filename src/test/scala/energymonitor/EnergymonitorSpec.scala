@@ -1,5 +1,6 @@
 package energymonitor
 
+import cats.effect.IO
 import cats.syntax.all._
 import energymonitor.rapl.implicits._
 import io.circe.syntax._
@@ -10,7 +11,10 @@ import org.scalacheck.cats.implicits._
 import weaver.SimpleIOSuite
 import weaver.scalacheck.Checkers
 
+import java.nio.file.Path
 import java.time.Instant
+import java.util.concurrent.TimeUnit
+import scala.concurrent.duration._
 
 object EnergyMonitorSpec extends SimpleIOSuite with Checkers {
   test("codec round trip") {
@@ -25,6 +29,18 @@ object EnergyMonitorSpec extends SimpleIOSuite with Checkers {
       assert(
         stats.asJson.as[EnergyStats] === Right(stats)
       )
+    }
+  }
+
+  test("sampling moves forward through time") {
+    val lagTime = 0.05.seconds
+    val outputPath = Path.of("./energy-test")
+    sRAPL.preSample(outputPath) >> IO.sleep(lagTime) >> sRAPL.postSample(
+      outputPath
+    ) map { diff =>
+      val elapsed =
+        FiniteDuration(diff.getTimeElapsed().toNanos(), TimeUnit.NANOSECONDS)
+      assert((elapsed - lagTime).toNanos > 0L)
     }
   }
 }
