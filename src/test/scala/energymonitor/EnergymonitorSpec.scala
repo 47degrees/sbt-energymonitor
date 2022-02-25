@@ -2,6 +2,7 @@ package energymonitor
 
 import cats.syntax.all._
 import energymonitor.rapl.implicits._
+import io.circe.syntax._
 import jRAPL.EnergyStats
 import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.Gen
@@ -22,9 +23,7 @@ object EnergyMonitorSpec extends SimpleIOSuite with Checkers {
       }
     ) { stats =>
       assert(
-        scodec.Codec.decode[EnergyStats](
-          scodec.Codec.encode(stats).require
-        ) == Right(stats)
+        stats.asJson.as[EnergyStats] === Right(stats)
       )
     }
   }
