@@ -1,8 +1,10 @@
 package energymonitor
 
-import cats.effect.{Resource, IO}
+import cats.effect.IO
+import cats.effect.Resource
 import cats.syntax.all._
 import jRAPL._
+
 import java.io._
 import java.nio.file.Path
 
