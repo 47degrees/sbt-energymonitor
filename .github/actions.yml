@@ -1,2 +1,2 @@
 pre:
-  ci: ./scripts/setup
+  ci: sudo ./scripts/setup
