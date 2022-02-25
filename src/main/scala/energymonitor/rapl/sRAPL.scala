@@ -8,9 +8,7 @@ import energymonitor.rapl.implicits._
 import io.circe.parser._
 import io.circe.syntax._
 import jRAPL._
-import org.typelevel.log4cats.Logger
 
-import java.io._
 import java.nio.charset.StandardCharsets
 import java.nio.file.Files
 import java.nio.file.Path

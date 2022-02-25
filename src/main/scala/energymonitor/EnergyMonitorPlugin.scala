@@ -1,10 +1,7 @@
 package energymonitor
 
 import sbt._
-import sbt.Keys._
 import sbt.plugins.JvmPlugin
-
-import sRAPL._
 
 object EnergyMonitorPlugin extends AutoPlugin {
 

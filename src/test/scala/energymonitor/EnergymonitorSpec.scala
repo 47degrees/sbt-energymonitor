@@ -5,7 +5,6 @@ import cats.syntax.all._
 import energymonitor.rapl.implicits._
 import io.circe.syntax._
 import jRAPL.EnergyStats
-import org.scalacheck.Arbitrary.arbitrary
 import org.scalacheck.Gen
 import org.scalacheck.cats.implicits._
 import weaver.SimpleIOSuite
