@@ -33,13 +33,24 @@ object EnergyMonitorSpec extends SimpleIOSuite with Checkers {
 
   test("sampling moves forward through time") {
     val lagTime = 0.05.seconds
-    val outputPath = Paths.get("./energy-test")
+    val outputPath = Paths.get("./energy-test-time")
     sRAPL.preSample(outputPath) >> IO.sleep(lagTime) >> sRAPL.postSample(
       outputPath
     ) map { diff =>
       val elapsed =
         FiniteDuration(diff.getTimeElapsed().toNanos(), TimeUnit.NANOSECONDS)
       assert((elapsed - lagTime).toNanos > 0L)
+    }
+  }
+
+  test("sampling obtains some samples") {
+    // still need to lag and read twice since preSample returns unit
+    val lagTime = 0.05.seconds
+    val outputPath = Paths.get("./energy-test-samples-non-empty")
+    sRAPL.preSample(outputPath) >> IO.sleep(lagTime) >> sRAPL.postSample(
+      outputPath
+    ) map { diff =>
+      assert(!diff.getPrimitiveSample().isEmpty)
     }
   }
 }
