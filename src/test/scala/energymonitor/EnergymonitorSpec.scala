@@ -51,11 +51,18 @@ object EnergyMonitorSpec extends SimpleIOSuite with Checkers {
   }
 
   test("sampling registers some energy use") {
-    val outputPath = Paths.get("./energy-test-samples-non-empty")
-    sRAPL.preSample(outputPath) >> spin(1000000000L) >> sRAPL.postSample(
-      outputPath
-    ) map { diff =>
-      assert(!diff.getPrimitiveSample().filter(_ > 0).isEmpty)
+    sys.env.get("CI") match {
+      case Some("true") =>
+        IO.consoleForIO.error(
+          "Sampling test skipped in CI for hardware reasons (https://github.com/47degrees/sbt-energymonitor/pull/6#issuecomment-1054567642)"
+        ) >> IO { assert(true) }
+      case _ =>
+        val outputPath = Paths.get("./energy-test-samples-non-empty")
+        sRAPL.preSample(outputPath) >> spin(1000000000L) >> sRAPL.postSample(
+          outputPath
+        ) map { diff =>
+          assert(!diff.getPrimitiveSample().filter(_ > 0).isEmpty)
+        }
     }
   }
 }
