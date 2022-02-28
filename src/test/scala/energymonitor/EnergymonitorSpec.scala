@@ -51,7 +51,6 @@ object EnergyMonitorSpec extends SimpleIOSuite with Checkers {
   }
 
   test("sampling registers some energy use") {
-    println(s"CI env variable: ${sys.env.get("GITHUB_ACTIONS")}")
     sys.env.get("GITHUB_ACTIONS") match {
       case Some("true") =>
         IO.consoleForIO.error(
