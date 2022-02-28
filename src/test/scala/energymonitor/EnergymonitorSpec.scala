@@ -16,6 +16,13 @@ import java.util.concurrent.TimeUnit
 import scala.concurrent.duration._
 
 object EnergyMonitorSpec extends SimpleIOSuite with Checkers {
+
+  private def spin(n: Long): IO[Unit] =
+    n match {
+      case 0L => IO.unit
+      case n  => IO.unit flatMap { _ => spin(n - 1) }
+    }
+
   test("codec round trip") {
     forall(
       (
@@ -44,13 +51,11 @@ object EnergyMonitorSpec extends SimpleIOSuite with Checkers {
   }
 
   test("sampling obtains some samples") {
-    // still need to lag and read twice since preSample returns unit
-    val lagTime = 0.05.seconds
     val outputPath = Paths.get("./energy-test-samples-non-empty")
-    sRAPL.preSample(outputPath) >> IO.sleep(lagTime) >> sRAPL.postSample(
+    sRAPL.preSample(outputPath) >> spin(100000000) >> sRAPL.postSample(
       outputPath
     ) map { diff =>
-      assert(!diff.getPrimitiveSample().filter(_ >= 0).isEmpty)
+      assert(!diff.getPrimitiveSample().filter(_ > 0).isEmpty)
     }
   }
 }
