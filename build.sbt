@@ -8,7 +8,7 @@ sbtPlugin := true
 
 lazy val Version = new {
   val cats = "2.7.0"
-  val catsEffect = "3.3.5"
+  val catsEffect = "3.3.6"
   val catsScalacheck = "0.3.1"
   val circe = "0.14.1"
   val weaver = "0.7.9"
