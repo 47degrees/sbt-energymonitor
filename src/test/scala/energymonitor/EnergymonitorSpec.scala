@@ -50,7 +50,7 @@ object EnergyMonitorSpec extends SimpleIOSuite with Checkers {
     sRAPL.preSample(outputPath) >> IO.sleep(lagTime) >> sRAPL.postSample(
       outputPath
     ) map { diff =>
-      assert(!diff.getPrimitiveSample().isEmpty)
+      assert(!diff.getPrimitiveSample().filter(_ >= 0).isEmpty)
     }
   }
 }
