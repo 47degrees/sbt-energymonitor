@@ -51,7 +51,8 @@ object EnergyMonitorSpec extends SimpleIOSuite with Checkers {
   }
 
   test("sampling registers some energy use") {
-    sys.env.get("CI") match {
+    println(s"CI env variable: ${sys.env.get("GITHUB_ACTIONS")}")
+    sys.env.get("GITHUB_ACTIONS") match {
       case Some("true") =>
         IO.consoleForIO.error(
           "Sampling test skipped in CI for hardware reasons (https://github.com/47degrees/sbt-energymonitor/pull/6#issuecomment-1054567642)"
