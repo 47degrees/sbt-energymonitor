@@ -8,7 +8,7 @@ sbtPlugin := true
 
 lazy val Version = new {
   val cats = "2.7.0"
-  val catsEffect = "3.3.5"
+  val catsEffect = "3.3.6"
 }
 
 addCommandAlias(
