@@ -52,7 +52,7 @@ object EnergyMonitorSpec extends SimpleIOSuite with Checkers {
 
   test("sampling obtains some samples") {
     val outputPath = Paths.get("./energy-test-samples-non-empty")
-    sRAPL.preSample(outputPath) >> spin(100000000) >> sRAPL.postSample(
+    sRAPL.preSample(outputPath) >> spin(1000000000L) >> sRAPL.postSample(
       outputPath
     ) map { diff =>
       assert(!diff.getPrimitiveSample().filter(_ > 0).isEmpty)
