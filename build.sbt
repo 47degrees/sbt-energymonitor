@@ -11,6 +11,8 @@ lazy val Version = new {
   val catsEffect = "3.3.6"
   val catsScalacheck = "0.3.1"
   val circe = "0.14.1"
+  val github4s = "0.31.0"
+  val http4s = "0.23.10"
   val weaver = "0.7.9"
 }
 
@@ -31,8 +33,10 @@ inThisBuild(
       "io.chrisdavenport" %% "cats-scalacheck" % Version.catsScalacheck % Test,
       "com.disneystreaming" %% "weaver-cats" % Version.weaver % Test,
       "com.disneystreaming" %% "weaver-scalacheck" % Version.weaver % Test,
+      "com.47deg" %% "github4s" % Version.github4s,
       "io.circe" %% "circe-core" % Version.circe,
       "io.circe" %% "circe-parser" % Version.circe,
+      "org.http4s" %% "http4s-blaze-client" % Version.http4s,
       "org.scala-sbt" %% "collections" % sbtVersion.value,
       "org.scala-sbt" %% "core-macros" % sbtVersion.value,
       "org.scala-sbt" %% "main" % sbtVersion.value,
