@@ -157,6 +157,7 @@ object EnergyMonitorPlugin extends AutoPlugin {
   override lazy val buildSettings = Seq()
 
   override lazy val globalSettings = Seq(
-    energyMonitorOutputFile := "target/energy-sample"
+    energyMonitorOutputFile := "target/energy-sample",
+    energyMonitorDisableSampling := false
   )
 }
