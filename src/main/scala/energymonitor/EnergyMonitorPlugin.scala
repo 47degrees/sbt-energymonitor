@@ -48,9 +48,9 @@ object EnergyMonitorPlugin extends AutoPlugin {
   val disabledSamplingMessage =
     "Sampling disabled, not attempting to collect energy consumption stats"
 
-  private def readPRNumberFromEnv: Option[Int] =
+  def readPRNumberFromEnv: Option[Int] =
     sys.env.get("GITHUB_REF").flatMap { ref =>
-      "refs/pull/([0-9])+/merge".r
+      "refs/pull/([0-9]+)/merge".r
         .findAllIn(ref)
         .matchData
         .toList
