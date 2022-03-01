@@ -103,7 +103,11 @@ object EnergyMonitorPlugin extends AutoPlugin {
       Option.empty[EnergyDiff]
     } else {
       postSample(Paths.get(energyMonitorOutputFile.value))
-        .map(Some(_))
+        .map({ diff =>
+          // logging unsafely here since otherwise there's nothing to do with the information
+          log.info(buildComment(diff, -1))
+          Some(diff)
+        })
         .unsafeRunSync()
     }
   }
