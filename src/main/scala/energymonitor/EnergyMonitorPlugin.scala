@@ -65,12 +65,12 @@ object EnergyMonitorPlugin extends AutoPlugin {
     val duration = diff.getTimeElapsed()
     val totalJoules = samples.sum
     val watts = totalJoules / duration.getSeconds().toDouble
-    s"""
-  | During CI attempt ${attemptNumber}, this run consumed power from ${samples.size} CPU cores.
+    f"""
+  | During CI attempt ${attemptNumber}%d, this run consumed power from ${samples.size}%d CPU cores.
   |
-  | The total energy consumed in joules was ${totalJoules}.
+  | The total energy consumed in joules was ${totalJoules}%.2f.
   |
-  | In the sampling period, mean power consumption was ${watts} watts.
+  | In the sampling period, mean power consumption was ${watts}%.2f watts.
   """.trim().stripMargin
   }
 
