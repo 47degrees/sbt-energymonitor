@@ -150,6 +150,7 @@ object EnergyMonitorPlugin extends AutoPlugin {
     energyMonitorDisableSampling := energyMonitorDisableSampling.value || false,
     energyMonitorPreSample := preSampleTask.value,
     energyMonitorPostSample := postSampleTask.value,
+    energyMonitorPostSampleGitHub := postSampleGitHubTask.value,
     energyMonitorOutputFile := energyMonitorOutputFile.value
   )
 
