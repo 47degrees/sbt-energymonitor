@@ -50,9 +50,14 @@ object EnergyMonitorPlugin extends AutoPlugin {
 
   private def readPRNumberFromEnv: Option[Int] =
     sys.env.get("GITHUB_REF").flatMap { ref =>
-      "refs/pull//merge".r.findAllIn(ref).matchData.toList.headOption.map { m =>
-        m.group(1).toInt
-      }
+      "refs/pull/([0-9])+/merge".r
+        .findAllIn(ref)
+        .matchData
+        .toList
+        .headOption
+        .map { m =>
+          m.group(1).toInt
+        }
     }
 
   private def buildComment(diff: EnergyDiff, attemptNumber: Int): String = {
