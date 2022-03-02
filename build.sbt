@@ -59,3 +59,8 @@ enablePlugins(ScriptedPlugin)
 // set up 'scripted; sbt plugin for testing sbt plugins
 scriptedLaunchOpts ++=
   Seq("-Xmx1024M", "-Dplugin.version=" + version.value)
+
+lazy val documentation = project
+  .enablePlugins(MdocPlugin)
+  .settings(mdocOut := file("."))
+  .settings(publish / skip := true)
