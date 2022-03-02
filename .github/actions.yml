@@ -1,0 +1,2 @@
+pre:
+  ci: sudo ./scripts/setup

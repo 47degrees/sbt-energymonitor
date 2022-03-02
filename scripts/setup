@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ -n "${DEBUG}" ]]; then
+    set -x
+fi
+
+function usage() {
+    echo -n \
+        "Usage: $(basename "$0")
+Install necessary components for running tests
+"
+}
+
+function configure_msr() {
+    apt-get update
+    # install required tools for reading from MSR
+    apt-get install -y msr-tools
+    # enable the module
+    modprobe msr
+    # set appropriate permissions on all CPU registers
+    chmod o+rw /dev/cpu/*/msr
+}
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    if [ "${1:-}" = "--help" ]; then
+        usage
+    else
+        echo "Configuring MSR requirements"
+        configure_msr
+    fi
+fi
