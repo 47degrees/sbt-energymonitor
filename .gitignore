@@ -73,3 +73,6 @@ tags
 # Direnv
 
 .direnv
+
+# nix flake lockfile
+flake.lock

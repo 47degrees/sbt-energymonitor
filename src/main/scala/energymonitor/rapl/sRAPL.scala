@@ -1,10 +1,18 @@
 package energymonitor
 
-import cats.effect.{Resource, IO}
+import cats.MonadError
+import cats.effect.IO
+import cats.effect.Resource
 import cats.syntax.all._
+import energymonitor.rapl.implicits._
+import io.circe.parser._
+import io.circe.syntax._
 import jRAPL._
-import java.io._
+
+import java.nio.charset.StandardCharsets
+import java.nio.file.Files
 import java.nio.file.Path
+import java.util.Base64
 
 package object sRAPL {
 
@@ -35,6 +43,15 @@ package object sRAPL {
       } yield monitor
     })(monitor => IO(monitor map { _.deactivate() }).void)
 
+  private def sample: IO[Option[EnergyStats]] = monitorResource.use {
+    _ traverse { monitor =>
+      IO {
+        monitor
+          .getSample()
+      }
+    }
+  }
+
   /** Sample energy statistics and serialize results to disk
     *
     * This method is written to be called *before* doing other work. For
@@ -49,7 +66,22 @@ package object sRAPL {
     * @param outputPath
     *   a path to serialize results to
     */
-  def preSample(outputPath: Path): IO[Unit] = ???
+  def preSample(outputPath: Path): IO[Unit] =
+    sample.flatMap {
+      _ traverse_ { stats =>
+        IO {
+          Files.write(
+            outputPath,
+            Base64
+              .getEncoder()
+              .encode(
+                stats.asJson.noSpaces
+                  .getBytes(StandardCharsets.UTF_8)
+              )
+          )
+        }
+      }
+    }
 
   /** Sample energy after having done other work
     *
@@ -66,5 +98,26 @@ package object sRAPL {
     * @return
     *   energy consumption statistics since the previous run
     */
-  def postSample(previousResultsPath: Path): IO[EnergyDiff] = ???
+  def postSample(previousResultsPath: Path): IO[EnergyDiff] = for {
+    input <- IO { Files.readAllBytes(previousResultsPath) }
+    decoded = new String(
+      Base64.getDecoder().decode(input),
+      StandardCharsets.UTF_8
+    )
+    priorStats <- MonadError[IO, Throwable].fromEither(
+      decode[EnergyStats](decoded)
+    )
+    newStatsO <- sample
+    newStats <- MonadError[IO, Throwable].fromOption(
+      newStatsO,
+      new Exception(
+        """
+        | Unable to fetch new energy statistics. if this is running on a Mac, that's fine, otherwise,
+        | please open an issue at
+        | https://github.com/47degrees/sbt-energymonitor/issues""".trim.stripMargin
+      )
+    )
+  } yield {
+    EnergyDiff.between(priorStats, newStats)
+  }
 }
