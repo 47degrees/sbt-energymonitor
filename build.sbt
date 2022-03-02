@@ -21,6 +21,7 @@ addCommandAlias(
   ";scalafmtCheckAll; scalafmtSbtCheck; test; publishLocal; scripted"
 )
 addCommandAlias("ci-publish", "github; ci-release")
+addCommandAlias("ci-docs", ";github; mdoc; headerCreateAll")
 
 inThisBuild(
   List(
