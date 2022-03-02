@@ -1,5 +1,4 @@
 name := """sbt-energymonitor"""
-version := "0.1-SNAPSHOT"
 organization := "com.47deg"
 
 ThisBuild / githubOrganization := "47degrees"
