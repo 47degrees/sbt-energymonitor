@@ -80,7 +80,7 @@ object EnergyMonitorPlugin extends AutoPlugin {
     val samples = diff.getPrimitiveSample()
     val duration = diff.getTimeElapsed()
     val totalJoules = samples.sum
-    val watts = totalJoules / duration.getSeconds().toDouble
+    val watts = totalJoules / (duration.toMillis().toDouble / 1000)
     f"""
   | During CI attempt ${attemptNumber}%d, this run consumed power from ${samples.size}%d CPU cores.
   |
