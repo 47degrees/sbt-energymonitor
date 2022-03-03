@@ -8,7 +8,56 @@ In order to use this plugin, you'll need to provide a jar containing `jRAPL` as 
 
 ## Usage
 
-This plugin requires sbt 1.0.0+
+This plugin requires sbt 1.0.0+. It provides three tasks: `energyMonitorPreSample`, `energyMonitorPostSample`, and `energyMonitorPostSampleGitHub`.
+These tasks are controlled by two settings: `energyMonitorDisableSampling` and `energyMonitorOutputFile`.
+
+### `energyMonitorPreSample`
+
+This task takes an initial snapshot of energy usage and writes the results to the value configured in `energyMonitorOutputFile`.
+
+If `energyMonitorDisableSampling` is true, this task will do nothing.
+
+### `energyMonitorPostSample`
+
+This task reads the initial sample from the path configured in `energyMonitorOutputFile`, takes a new snapshot,
+and prints calculated energy usage to the console.
+
+If `energyMonitorDisableSampling` is true, this task will do nothing.
+
+### `energyMonitorPostSampleGitHub`
+
+This task works like `energyMonitorPostSample`, but instead of printing results to the console, sends them to a pull request comment.
+It was written with the aim of posting energy consumption in every GitHub Actions CI run, but that's
+[not going to work](https://github.com/47degrees/sbt-energymonitor/pull/6#issuecomment-1054567642) with the
+current infrastructure backing GitHub Actions. You can still do this locally though if you're testing a PR and
+want to add a comment documenting energy usage. To do so, you'll need to export four environment variables in
+the shell session where you're running `sbt`:
+
+- `GITHUB_REPOSITORY`: this value is the `org-name/repo-name` repository that you're working in, e.g. `47degrees/sbt-energymonitor`
+- `GITHUB_TOKEN`: this value is a [GitHub personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+- `GITHUB_RUN_ATTEMPT`: this value is an integer representing which CI run statistics correspond to. You can set this to any integer value,
+  though tying it to the commit sequence in a pull request might make sense.
+- `GITHUB_REF`: this is a reference like `refs/pull/1234/merge`, where `1234` is the PR number you want to add the comment to.
+
+You can read more about any of these environment variables in the
+[default environment variables](https://docs.github.com/en/actions/learn-github-actions/environment-variables#default-environment-variables)
+GitHub Actions documentation.
+
+You can see example comments in [this sandbox repo for learning `droste`](https://github.com/jisantuc/droste-playground/pull/5#issuecomment-1055702006).
+
+If `energyMonitorDisableSampling` is true, this task will do nothing.
+
+### `energyMonitorDisableSampling`
+
+This setting controls whether any of the sampling tasks do anything. If it's set to `true`, none of them will do any work, and they'll
+log a message that they're not doing any work because sampling is disabled.
+
+### `energyMonitorOutputFile`
+
+This setting contains the path that the `energyMonitorPreSample` task should write to and that the `energyMonitorPostSample`
+and `energyMonitorPostSampleGitHub` tasks should read from. It defaults to `target/energy-sample`, so if you're ignoring
+`target/` directories in `git`, it shouldn't annoy you. However, if you'd like to write the sample somewhere else, you
+have that power.
 
 ### Testing
 
