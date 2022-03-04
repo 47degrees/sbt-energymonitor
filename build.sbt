@@ -12,7 +12,7 @@ lazy val Version = new {
   val circe = "0.14.1"
   val github4s = "0.31.0"
   val http4s = "0.23.10"
-  val weaver = "0.7.9"
+  val weaver = "0.7.11"
 }
 
 addCommandAlias(
