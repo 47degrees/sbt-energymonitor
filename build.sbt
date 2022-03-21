@@ -11,7 +11,7 @@ lazy val Version = new {
   val catsScalacheck = "0.3.1"
   val circe = "0.14.1"
   val github4s = "0.31.0"
-  val http4s = "0.23.10"
+  val http4s = "0.23.11"
   val weaver = "0.7.11"
 }
 
