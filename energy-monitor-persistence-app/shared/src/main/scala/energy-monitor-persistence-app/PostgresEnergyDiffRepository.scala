@@ -1,23 +1,20 @@
 package energymonitor.app
 
+import energymonitor.persistence.EnergyDiff
+import energymonitor.persistence.EnergyDiffRepository
+
 import cats.effect.Concurrent
 import cats.effect.std.Console
 import cats.syntax.functor._
-import energymonitor.persistence.EnergyDiff
-import energymonitor.persistence.EnergyDiffRepository
 import fs2.io.net.Network
 import natchez.Trace
-import skunk.Session
 import skunk.codec.all._
 import skunk.implicits._
-
-import java.time.LocalDateTime
-import java.time.ZoneOffset
-import skunk.Encoder
+import skunk.{Decoder, Encoder, Session, ~}
 import squants.energy.Joules
 import squants.time.Seconds
-import skunk.Decoder
-import skunk.~
+
+import java.time.{LocalDateTime, ZoneOffset}
 
 class PostgresEnergyDiffRepository[F[
     _
@@ -51,7 +48,7 @@ class PostgresEnergyDiffRepository[F[
           ) ~ diff.run ~ diff.organization ~ diff.repository ~ diff.branch ~ diff.tag
       )
 
-    private val decEnergyDiff: Decoder[EnergyDiff] =
+    val decEnergyDiff: Decoder[EnergyDiff] =
       energyDiffCols.map {
         case joules ~ seconds ~ localDateTime ~ run ~ organization ~ repository ~ branch ~ tag =>
           EnergyDiff(

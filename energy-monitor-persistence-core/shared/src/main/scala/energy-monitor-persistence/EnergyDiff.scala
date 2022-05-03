@@ -1,12 +1,10 @@
 package energymonitor.persistence
 
-import io.circe.Decoder
-import io.circe.Encoder
-import squants.energy.Energy
-import squants.energy.Joules
-import squants.time.Seconds
-import squants.time.Time
 import cats.kernel.Eq
+import io.circe.{Decoder, Encoder}
+import squants.energy.{Energy, Joules}
+import squants.time.{Seconds, Time}
+
 import java.time.Instant
 
 final case class EnergyDiff(
