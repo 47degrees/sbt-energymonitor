@@ -14,17 +14,19 @@ final case class EnergyDiff(
     seconds: Time,
     recordedAt: Instant,
     run: Int,
+    organization: String,
     repository: String,
     branch: String,
     tag: Option[String]
 )
 
 object EnergyDiff {
-  implicit val decEnergyDiff: Decoder[EnergyDiff] = Decoder.forProduct7(
+  implicit val decEnergyDiff: Decoder[EnergyDiff] = Decoder.forProduct8(
     "joules",
     "seconds",
     "recordedAt",
     "run",
+    "organization",
     "repository",
     "branch",
     "tag"
@@ -34,6 +36,7 @@ object EnergyDiff {
         seconds: Double,
         recordedAt: Instant,
         run: Int,
+        organization: String,
         repository: String,
         branch: String,
         tag: Option[String]
@@ -43,6 +46,7 @@ object EnergyDiff {
         Seconds(seconds),
         recordedAt,
         run,
+        organization,
         repository,
         branch,
         tag
@@ -50,11 +54,12 @@ object EnergyDiff {
   })
 
   implicit val encEnergyDiff: Encoder[EnergyDiff] =
-    Encoder.forProduct7(
+    Encoder.forProduct8(
       "joules",
       "seconds",
       "recordedAt",
       "run",
+      "organization",
       "repository",
       "branch",
       "tag"
@@ -64,6 +69,7 @@ object EnergyDiff {
         diff.seconds.toSeconds,
         diff.recordedAt,
         diff.run,
+        diff.organization,
         diff.repository,
         diff.branch,
         diff.tag

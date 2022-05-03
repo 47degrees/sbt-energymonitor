@@ -110,8 +110,13 @@ lazy val energyMonitorPersistenceCore =
 lazy val energyMonitorPersistenceApp =
   (crossProject(JSPlatform, JVMPlatform) in file(
     "energy-monitor-persistence-app"
-  )).dependsOn(energyMonitorPersistenceCore)
+  ))
+    .dependsOn(energyMonitorPersistenceCore)
     .settings(
       libraryDependencies ++= Seq(
+        "org.tpolecat" %%% "skunk-core" % "0.2.3"
       )
+    )
+    .settings(
+      appSettings: _*
     )
