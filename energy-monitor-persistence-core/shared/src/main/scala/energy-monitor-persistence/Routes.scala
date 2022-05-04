@@ -44,7 +44,7 @@ class Routes[F[_]: Concurrent](
         )
         .flatMap { Ok(_) }
 
-    case GET -> Root / organization / repository / branch :? FromRunParam(
+    case GET -> Root / organization / repository / "mean" / branch :? FromRunParam(
           fromRun
         ) :? ToRunParam(toRun) =>
       energyDiffRepository

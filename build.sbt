@@ -12,6 +12,8 @@ lazy val Version = new {
   val github4s = "0.31.0"
   val http4s = "0.23.11"
   val munit = "0.7.29"
+  val munitCatsEffect = "1.0.7"
+  val scalacheckEffect = "1.0.4"
   val squants = "1.8.3"
   val weaver = "0.7.11"
 }
@@ -95,11 +97,13 @@ lazy val energyMonitorPersistenceCore =
         "io.circe" %%% "circe-core" % Version.circe,
         "io.circe" %%% "circe-testing" % Version.circe % Test,
         "org.scalameta" %%% "munit" % Version.munit % Test,
+        "org.typelevel" %%% "scalacheck-effect-munit" % Version.scalacheckEffect % Test,
         "org.typelevel" %%% "cats-core" % Version.cats,
         "org.typelevel" %%% "cats-effect" % Version.catsEffect,
         "org.typelevel" %%% "cats-effect-kernel" % Version.catsEffect,
         "org.typelevel" %%% "cats-kernel" % Version.cats,
         "org.typelevel" %%% "discipline-munit" % Version.disciplineMunit % Test,
+        "org.typelevel" %%% "munit-cats-effect-3" % Version.munitCatsEffect % Test,
         "org.typelevel" %%% "squants" % Version.squants,
         "org.http4s" %%% "http4s-circe" % Version.http4s,
         "org.http4s" %%% "http4s-core" % Version.http4s,

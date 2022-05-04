@@ -14,10 +14,10 @@ trait Implicits {
     seconds <- Gen.double.filter(_.isFinite)
     recordedAt <- Gen.choose(0L, Int.MaxValue).map(Instant.ofEpochSecond(_))
     run <- arbitrary[Int]
-    organization <- Gen.alphaStr
-    repository <- Gen.alphaStr
-    branch <- Gen.alphaStr
-    tag <- Gen.option(Gen.alphaStr)
+    organization <- Gen.alphaStr.filter(_.nonEmpty)
+    repository <- Gen.alphaStr.filter(_.nonEmpty)
+    branch <- Gen.alphaStr.filter(_.nonEmpty)
+    tag <- Gen.option(Gen.alphaStr.filter(_.nonEmpty))
   } yield EnergyDiff(
     Joules(joules),
     Seconds(seconds),
