@@ -1,0 +1,9 @@
+services:
+  database:
+    image: postgres:14.2
+    environment:
+      POSTGRES_USER: energy_monitor
+      POSTGRES_PASSWORD: energy_monitor
+      POSTGRES_DB: energy_monitor
+    ports:
+      - 5432:5432

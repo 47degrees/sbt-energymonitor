@@ -3,17 +3,24 @@ organization := "com.47deg"
 
 ThisBuild / githubOrganization := "47degrees"
 
+ThisBuild / Compile / run / fork := true
+
 lazy val Version = new {
   val cats = "2.7.0"
   val catsEffect = "3.3.11"
   val catsScalacheck = "0.3.1"
   val circe = "0.14.1"
+  val decline = "2.2.0"
   val disciplineMunit = "1.0.9"
   val github4s = "0.31.0"
   val http4s = "0.23.11"
+  val ip4s = "3.1.2"
+  val log4cats = "2.3.0"
   val munit = "0.7.29"
   val munitCatsEffect = "1.0.7"
   val scalacheckEffect = "1.0.4"
+  val skunk = "0.2.3"
+  val slf4j = "1.7.5"
   val squants = "1.8.3"
   val weaver = "0.7.11"
 }
@@ -118,9 +125,17 @@ lazy val energyMonitorPersistenceApp =
     .dependsOn(energyMonitorPersistenceCore)
     .settings(
       libraryDependencies ++= Seq(
-        "org.tpolecat" %%% "skunk-core" % "0.2.3"
+        "org.tpolecat" %%% "skunk-core" % Version.skunk,
+        "com.monovore" %%% "decline" % Version.decline,
+        "com.comcast" %%% "ip4s-core" % Version.ip4s,
+        "com.monovore" %%% "decline-effect" % Version.decline,
+        "org.http4s" %%% "http4s-ember-server" % Version.http4s
       )
     )
     .settings(
       appSettings: _*
+    )
+    .jsSettings(
+      scalaJSUseMainModuleInitializer := true,
+      scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) }
     )

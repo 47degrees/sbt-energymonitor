@@ -72,8 +72,6 @@ class PostgresEnergyDiffRepository[F[
       val base = sql"""
             select joules, duration_seconds, recorded_at, run, organization, repository, branch, tag
             from energy_measurements
-            where
-              
           """
       val orgFilter = sql"organization = $text"
       val repositoryFilter = sql"repository = $text"
