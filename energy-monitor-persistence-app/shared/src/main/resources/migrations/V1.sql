@@ -1,9 +1,9 @@
 CREATE TABLE energy_measurements (
     id uuid primary key,
-    joules float8 not null,
-    duration_seconds float8 not null,
+    joules double precision not null,
+    duration_seconds double precision not null,
     recorded_at timestamp with time zone not null,
-    run int not null,
+    run integer not null,
     organization text not null,
     repository text not null,
     branch text not null,

@@ -12,16 +12,19 @@ lazy val Version = new {
   val circe = "0.14.1"
   val decline = "2.2.0"
   val disciplineMunit = "1.0.9"
+  val flyway = "8.4.2"
   val github4s = "0.31.0"
   val http4s = "0.23.11"
   val ip4s = "3.1.2"
   val log4cats = "2.3.0"
+  val logback = "1.2.3"
   val munit = "0.7.29"
   val munitCatsEffect = "1.0.7"
+  val postgres = "42.3.4"
   val scalacheckEffect = "1.0.4"
   val skunk = "0.2.3"
-  val slf4j = "1.7.5"
   val squants = "1.8.3"
+  val testContainersScala = "0.39.12"
   val weaver = "0.7.11"
 }
 
@@ -125,11 +128,13 @@ lazy val energyMonitorPersistenceApp =
     .dependsOn(energyMonitorPersistenceCore)
     .settings(
       libraryDependencies ++= Seq(
-        "org.tpolecat" %%% "skunk-core" % Version.skunk,
-        "com.monovore" %%% "decline" % Version.decline,
-        "com.comcast" %%% "ip4s-core" % Version.ip4s,
         "com.monovore" %%% "decline-effect" % Version.decline,
-        "org.http4s" %%% "http4s-ember-server" % Version.http4s
+        "com.monovore" %%% "decline" % Version.decline,
+        "org.http4s" %%% "http4s-ember-server" % Version.http4s,
+        "org.scalameta" %%% "munit" % Version.munit % Test,
+        "org.tpolecat" %%% "skunk-core" % Version.skunk,
+        "org.typelevel" %%% "munit-cats-effect-3" % Version.munitCatsEffect % Test,
+        "org.typelevel" %%% "scalacheck-effect-munit" % Version.scalacheckEffect % Test
       )
     )
     .settings(
@@ -138,4 +143,13 @@ lazy val energyMonitorPersistenceApp =
     .jsSettings(
       scalaJSUseMainModuleInitializer := true,
       scalaJSLinkerConfig ~= { _.withModuleKind(ModuleKind.CommonJSModule) }
+    )
+    .jvmSettings(
+      libraryDependencies ++= Seq(
+        "ch.qos.logback" % "logback-classic" % Version.logback % Runtime,
+        "com.dimafeng" %% "testcontainers-scala-postgresql" % Version.testContainersScala % Test,
+        "org.flywaydb" % "flyway-core" % Version.flyway % Test,
+        "org.postgresql" % "postgresql" % Version.postgres % Test,
+        "org.typelevel" %% "log4cats-slf4j" % "2.3.0" // Direct Slf4j Support - Recommended
+      )
     )

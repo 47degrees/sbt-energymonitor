@@ -52,6 +52,5 @@ class Routes[F[_]: Concurrent](
         .flatMap { mean =>
           Ok(Map("meanConsumption" -> mean))
         }
-
   }
 }
