@@ -8,3 +8,18 @@ services:
     ports:
       - 5432:5432
     command: postgres -c log_statement=all
+  application:
+    image: com.47deg/energy-monitor-persistence-app:latest
+    ports:
+      - 8080:8080
+    environment:
+      - DB_HOST=database.service.energymonitor.internal
+      - DB_USER=energy_monitor
+      - DB_PASSWORD=energy_monitor
+      - DB_NAME=energy_monitor
+      - DB_CONNECTION_POOL_SIZE=8
+      - DB_PORT=5432
+    depends_on:
+      - database
+    links:
+      - database:database.service.energymonitor.internal

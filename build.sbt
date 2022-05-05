@@ -128,6 +128,8 @@ lazy val energyMonitorPersistenceCore =
       )
     )
 
+lazy val appImageName = "energy-monitor-persistence-app"
+
 lazy val energyMonitorPersistenceApp =
   (crossProject(JSPlatform, JVMPlatform) in file(
     "energy-monitor-persistence-app"
@@ -169,5 +171,19 @@ lazy val energyMonitorPersistenceApp =
         "com.dimafeng" %% "testcontainers-scala-postgresql" % Version.testContainersScala % Test,
         "org.flywaydb" % "flyway-core" % Version.flyway % Test,
         "org.postgresql" % "postgresql" % Version.postgres % Test
+      ),
+      docker / dockerfile := {
+        val appDir: File = stage.value
+        val targetDir = "/app"
+
+        new Dockerfile {
+          from("openjdk:8-jre")
+          entryPoint(s"$targetDir/bin/${executableScriptName.value}")
+          copy(appDir, targetDir, chown = "daemon:daemon")
+        }
+      },
+      docker / imageNames := Seq(
+        ImageName(s"${organization.value}/$appImageName:latest")
       )
     )
+    .enablePlugins(sbtdocker.DockerPlugin, JavaAppPackaging)
