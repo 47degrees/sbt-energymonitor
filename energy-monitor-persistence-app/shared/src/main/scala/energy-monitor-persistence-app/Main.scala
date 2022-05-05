@@ -4,6 +4,7 @@ import energymonitor.persistence.Routes
 
 import cats.effect.std
 import cats.effect.{ExitCode, IO, IOApp}
+import com.comcast.ip4s._
 import com.monovore.decline.Command
 import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.server.middleware.Logger
@@ -24,7 +25,12 @@ object Main extends IOApp {
           router = Logger.httpApp[IO](false, false)(
             new Routes[IO](repo).routes.orNotFound
           )
-          server <- EmberServerBuilder.default[IO].withHttpApp(router).build
+          server <- EmberServerBuilder
+            .default[IO]
+            .withHttpApp(router)
+            .withHost(ipv4"0.0.0.0")
+            .build
+
         } yield server)
           .use { _ => IO.never[ExitCode] }
 

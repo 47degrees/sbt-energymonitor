@@ -180,6 +180,7 @@ lazy val energyMonitorPersistenceApp =
           from("openjdk:8-jre")
           entryPoint(s"$targetDir/bin/${executableScriptName.value}")
           copy(appDir, targetDir, chown = "daemon:daemon")
+          expose(8080)
         }
       },
       docker / imageNames := Seq(
