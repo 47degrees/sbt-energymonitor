@@ -37,7 +37,10 @@ addCommandAlias(
     "energyMonitorPlugin/publishLocal",
     "energyMonitorPlugin/scripted",
     "energyMonitorPersistenceCoreJS/test",
-    "energyMonitorPersistenceCoreJVM/test"
+    "energyMonitorPersistenceCoreJVM/test",
+    "energyMonitorPersistenceAppJVM/test"
+    // the JS app implementation is untested for now, since there are some
+    // linking errors and it's not critical to the current scope of work
   ).mkString(";")
 )
 addCommandAlias("ci-publish", "github; ci-release")
