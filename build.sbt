@@ -6,6 +6,7 @@ ThisBuild / githubOrganization := "47degrees"
 ThisBuild / Compile / run / fork := true
 
 lazy val Version = new {
+  val caseInsensitive = "1.2.0"
   val cats = "2.7.0"
   val catsEffect = "3.3.11"
   val catsScalacheck = "0.3.1"
@@ -13,6 +14,7 @@ lazy val Version = new {
   val decline = "2.2.0"
   val disciplineMunit = "1.0.9"
   val flyway = "8.4.2"
+  val fs2 = "3.2.5"
   val github4s = "0.31.0"
   val http4s = "0.23.11"
   val ip4s = "3.1.2"
@@ -20,9 +22,11 @@ lazy val Version = new {
   val logback = "1.2.3"
   val munit = "0.7.29"
   val munitCatsEffect = "1.0.7"
+  val natchez = "0.1.6"
   val postgres = "42.3.4"
   val scalacheckEffect = "1.0.4"
   val skunk = "0.2.3"
+  val sourcepos = "1.0.1"
   val squants = "1.8.3"
   val testContainersScala = "0.39.12"
   val weaver = "0.7.11"
@@ -131,13 +135,25 @@ lazy val energyMonitorPersistenceApp =
     .dependsOn(energyMonitorPersistenceCore)
     .settings(
       libraryDependencies ++= Seq(
-        "com.monovore" %%% "decline-effect" % Version.decline,
+        "co.fs2" %%% "fs2-core" % Version.fs2,
+        "co.fs2" %%% "fs2-io" % Version.fs2,
         "com.monovore" %%% "decline" % Version.decline,
+        "org.http4s" %%% "http4s-core" % Version.http4s,
         "org.http4s" %%% "http4s-ember-server" % Version.http4s,
+        "org.http4s" %%% "http4s-server" % Version.http4s,
         "org.scalameta" %%% "munit" % Version.munit % Test,
+        "org.tpolecat" %%% "natchez-core" % Version.natchez,
         "org.tpolecat" %%% "skunk-core" % Version.skunk,
+        "org.tpolecat" %%% "sourcepos" % Version.sourcepos,
+        "org.typelevel" %% "case-insensitive" % Version.caseInsensitive,
+        "org.typelevel" %% "cats-core" % Version.cats,
+        "org.typelevel" %% "cats-effect" % Version.catsEffect,
+        "org.typelevel" %% "cats-effect-kernel" % Version.catsEffect,
+        "org.typelevel" %% "cats-effect-std" % Version.catsEffect,
+        "org.typelevel" %% "cats-kernel" % Version.cats,
         "org.typelevel" %%% "munit-cats-effect-3" % Version.munitCatsEffect % Test,
-        "org.typelevel" %%% "scalacheck-effect-munit" % Version.scalacheckEffect % Test
+        "org.typelevel" %%% "scalacheck-effect-munit" % Version.scalacheckEffect % Test,
+        "org.typelevel" %% "squants" % Version.squants
       )
     )
     .settings(
@@ -152,7 +168,6 @@ lazy val energyMonitorPersistenceApp =
         "ch.qos.logback" % "logback-classic" % Version.logback % Runtime,
         "com.dimafeng" %% "testcontainers-scala-postgresql" % Version.testContainersScala % Test,
         "org.flywaydb" % "flyway-core" % Version.flyway % Test,
-        "org.postgresql" % "postgresql" % Version.postgres % Test,
-        "org.typelevel" %% "log4cats-slf4j" % "2.3.0" // Direct Slf4j Support - Recommended
+        "org.postgresql" % "postgresql" % Version.postgres % Test
       )
     )
