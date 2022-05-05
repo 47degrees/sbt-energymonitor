@@ -1,6 +1,6 @@
 services:
   migration:
-    image: flyway/flyway:7.5.1
+    image: flyway/flyway:8.5.10
     environment:
       - FLYWAY_DRIVER=org.postgresql.Driver
       - FLYWAY_URL=jdbc:postgresql://database.service.energymonitor.internal/
