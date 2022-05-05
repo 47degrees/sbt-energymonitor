@@ -42,7 +42,8 @@ addCommandAlias(
     "energyMonitorPlugin/scripted",
     "energyMonitorPersistenceCoreJS/test",
     "energyMonitorPersistenceCoreJVM/test",
-    "energyMonitorPersistenceAppJVM/test"
+    "energyMonitorPersistenceAppJVM/test",
+    "energyMonitorPersistenceAppJVM/docker"
     // the JS app implementation is untested for now, since there are some
     // linking errors and it's not critical to the current scope of work
   ).mkString(";")
