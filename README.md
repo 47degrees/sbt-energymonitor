@@ -44,6 +44,8 @@ Its behavior is controlled by three settings: `energyMonitorPersistenceServerUrl
 
 However, if `energyMonitorDisableSampling` is `true`, this task will do nothing.
 
+You can see an example usage of this task in the scripted test included in this repository under the `energy-monitor-plugin/src/sbt-test/http-store` directory.
+
 #### `energyMonitorPersistenceServerUrl`
 
 This setting determines where the task should send the information about energy consumption. Its default value is `http://localhost:8080`, which will be correct if you're experimenting locally and using the demo server provided in the `energyMonitorPersistenceApp` module. You _should not use a local server for real testing though_, since the server's energy consumption will also show up in the power consumed by the CPU / memory during your energy tests.
