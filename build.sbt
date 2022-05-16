@@ -94,7 +94,8 @@ lazy val energyMonitorPlugin =
       sbtPlugin := true,
       // set up 'scripted; sbt plugin for testing sbt plugins
       scriptedLaunchOpts ++=
-        Seq("-Xmx1024M", "-Dplugin.version=" + version.value)
+        Seq("-Xmx1024M", "-Dplugin.version=" + version.value),
+      name := "energy-monitor-plugin"
     )
 
 lazy val appSettings = Seq(
@@ -126,7 +127,8 @@ lazy val energyMonitorPersistenceCore =
         "org.http4s" %%% "http4s-circe" % Version.http4s,
         "org.http4s" %%% "http4s-core" % Version.http4s,
         "org.http4s" %%% "http4s-dsl" % Version.http4s
-      )
+      ),
+      name := "energy-monitor-persistence-core"
     )
 
 lazy val appImageName = "energy-monitor-persistence-app"
@@ -157,7 +159,8 @@ lazy val energyMonitorPersistenceApp =
         "org.typelevel" %%% "munit-cats-effect-3" % Version.munitCatsEffect % Test,
         "org.typelevel" %%% "scalacheck-effect-munit" % Version.scalacheckEffect % Test,
         "org.typelevel" %%% "squants" % Version.squants
-      )
+      ),
+      name := "energy-monitor-persistence-app"
     )
     .settings(
       appSettings: _*
