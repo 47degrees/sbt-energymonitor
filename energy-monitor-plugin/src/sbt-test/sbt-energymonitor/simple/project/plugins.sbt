@@ -5,5 +5,5 @@
       """|The system property 'plugin.version' is not defined.
                                   |Specify this property using the scriptedLaunchOpts -D.""".stripMargin
     )
-  else addSbtPlugin("com.47deg" % """energymonitorplugin""" % pluginVersion)
+  else addSbtPlugin("com.47deg" % """energy-monitor-plugin""" % pluginVersion)
 }
