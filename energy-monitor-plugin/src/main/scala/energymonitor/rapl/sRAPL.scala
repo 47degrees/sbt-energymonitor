@@ -16,18 +16,17 @@
 
 package energymonitor
 
-import cats.MonadError
-import cats.effect.IO
-import cats.effect.Resource
-import cats.syntax.all._
 import energymonitor.rapl.implicits._
+
+import cats.MonadError
+import cats.effect.{IO, Resource}
+import cats.syntax.all._
 import io.circe.parser._
 import io.circe.syntax._
 import jRAPL._
 
 import java.nio.charset.StandardCharsets
-import java.nio.file.Files
-import java.nio.file.Path
+import java.nio.file.{Files, Path}
 import java.util.Base64
 
 package object sRAPL {

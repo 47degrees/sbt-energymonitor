@@ -1,0 +1,17 @@
+services:
+  migration:
+    image: flyway/flyway:8.5.10
+    environment:
+      - FLYWAY_DRIVER=org.postgresql.Driver
+      - FLYWAY_URL=jdbc:postgresql://database.service.energymonitor.internal/
+      - FLYWAY_USER=energy_monitor
+      - FLYWAY_PASSWORD=energy_monitor
+      - FLYWAY_LOCATIONS=filesystem:/opt/data/migrations
+      - FLYWAY_SCHEMAS=public
+      - FLYWAY_BASELINE_ON_MIGRATE=true
+    depends_on:
+      - database
+    links:
+      - database:database.service.energymonitor.internal
+    volumes:
+      - ./energy-monitor-persistence-app/shared/src/main/resources/migrations:/opt/data/migrations
