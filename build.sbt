@@ -33,6 +33,17 @@ lazy val Version = new {
 }
 
 addCommandAlias(
+  "libraries-test",
+  List(
+    "+energyMonitorPersistenceCoreJS/test",
+    "+energyMonitorPersistenceCoreJVM/test",
+    "+energyMonitorPersistenceAppJVM/test",
+    "+energyMonitorPersistenceAppJVM/docker",
+    "+energyMonitorPersistenceAppJS/test"
+  ).mkString(";")
+)
+
+addCommandAlias(
   "ci-test",
   List(
     "scalafmtCheckAll",
@@ -40,10 +51,7 @@ addCommandAlias(
     "energyMonitorPlugin/test",
     "energyMonitorPlugin/publishLocal",
     "energyMonitorPlugin/scripted",
-    "energyMonitorPersistenceCoreJS/test",
-    "energyMonitorPersistenceCoreJVM/test",
-    "energyMonitorPersistenceAppJVM/test",
-    "energyMonitorPersistenceAppJVM/docker"
+    "libraries-test"
     // the JS app implementation is untested for now, since there are some
     // linking errors and it's not critical to the current scope of work
   ).mkString(";")

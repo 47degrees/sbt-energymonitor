@@ -12,7 +12,9 @@ trait Implicits {
   private val genEnergyDiff: Gen[EnergyDiff] = for {
     joules <- Gen.double.filter(_.isFinite)
     seconds <- Gen.double.filter(_.isFinite)
-    recordedAt <- Gen.choose(0L, Int.MaxValue).map(Instant.ofEpochSecond(_))
+    recordedAt <- Gen
+      .choose(0L, Int.MaxValue.toLong)
+      .map(Instant.ofEpochSecond(_))
     run <- arbitrary[Int]
     organization <- Gen.alphaStr.filter(_.nonEmpty)
     repository <- Gen.alphaStr.filter(_.nonEmpty)
