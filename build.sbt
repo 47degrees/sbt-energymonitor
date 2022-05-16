@@ -150,13 +150,13 @@ lazy val energyMonitorPersistenceApp =
         "org.tpolecat" %%% "sourcepos" % Version.sourcepos,
         "org.typelevel" %% "case-insensitive" % Version.caseInsensitive,
         "org.typelevel" %% "cats-core" % Version.cats,
-        "org.typelevel" %% "cats-effect" % Version.catsEffect,
         "org.typelevel" %% "cats-effect-kernel" % Version.catsEffect,
         "org.typelevel" %% "cats-effect-std" % Version.catsEffect,
+        "org.typelevel" %% "cats-effect" % Version.catsEffect,
         "org.typelevel" %% "cats-kernel" % Version.cats,
         "org.typelevel" %%% "munit-cats-effect-3" % Version.munitCatsEffect % Test,
         "org.typelevel" %%% "scalacheck-effect-munit" % Version.scalacheckEffect % Test,
-        "org.typelevel" %% "squants" % Version.squants
+        "org.typelevel" %%% "squants" % Version.squants
       )
     )
     .settings(
