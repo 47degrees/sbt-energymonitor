@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+set -e
+
+if [[ -n "${DEBUG}" ]]; then
+    set -x
+fi
+
+function usage() {
+    echo -n \
+        "Usage: $(basename "$0")
+Build the JVM application's container image and prepare the database"
+}
+
+function ensure_local_containers() {
+    sbt energyMonitorPersistenceAppJVM/docker
+    docker compose \
+        -f docker-compose.yml \
+        -f docker-compose.migrations.yml \
+        pull database migration
+}
+
+if [ "${BASH_SOURCE[0]}" = "${0}" ]; then
+    if [ "${1:-}" = "--help" ]; then
+        usage
+    else
+        echo "Pulling/building containers and running migrations"
+        ensure_local_containers
+        ./scripts/migrate migrate
+        docker compose \
+            -f docker-compose.yml \
+            -f docker-compose.migrations.yml \
+            stop
+
+    fi
+fi

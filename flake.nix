@@ -44,7 +44,7 @@
         let pkgs = nixpkgsFor.${system};
         in
         pkgs.mkShell {
-          buildInputs = with pkgs; [ sbt ];
+          buildInputs = with pkgs; [ sbt pkgs.openjdk8 pkgs.nodejs-14_x ];
         });
 
     };
