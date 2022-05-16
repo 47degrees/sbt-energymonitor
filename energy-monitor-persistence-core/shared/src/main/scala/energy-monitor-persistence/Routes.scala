@@ -2,7 +2,7 @@ package energymonitor.persistence
 
 import cats.effect.Concurrent
 import cats.syntax.flatMap._
-import org.http4s.HttpRoutes
+import org.http4s.{EntityDecoder, HttpRoutes}
 import org.http4s.circe.CirceEntityEncoder._
 import org.http4s.circe.jsonOf
 import org.http4s.dsl.Http4sDsl
@@ -11,7 +11,8 @@ class Routes[F[_]: Concurrent](
     energyDiffRepository: EnergyDiffRepository[F]
 ) extends Http4sDsl[F] {
 
-  implicit val energyDiffCodec = jsonOf[F, EnergyDiff]
+  implicit val energyDiffCodec: EntityDecoder[F, EnergyDiff] =
+    jsonOf[F, EnergyDiff]
 
   private object BranchParam
       extends OptionalQueryParamDecoderMatcher[String]("branch")
