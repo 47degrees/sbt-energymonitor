@@ -28,7 +28,7 @@ lazy val Version = new {
   val skunk = "0.2.3"
   val sourcepos = "1.0.1"
   val squants = "1.8.3"
-  val testContainersScala = "0.39.12"
+  val testContainersScala = "0.40.7"
   val weaver = "0.7.11"
 }
 
