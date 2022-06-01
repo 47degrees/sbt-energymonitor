@@ -13,7 +13,7 @@ lazy val Version = new {
   val circe = "0.14.1"
   val decline = "2.2.0"
   val disciplineMunit = "1.0.9"
-  val flyway = "8.5.11"
+  val flyway = "8.5.12"
   val fs2 = "3.2.5"
   val github4s = "0.31.0"
   val http4s = "0.23.12"
@@ -28,7 +28,7 @@ lazy val Version = new {
   val skunk = "0.3.1"
   val sourcepos = "1.0.1"
   val squants = "1.8.3"
-  val testContainersScala = "0.40.7"
+  val testContainersScala = "0.40.8"
   val weaver = "0.7.12"
 }
 
