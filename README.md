@@ -26,7 +26,7 @@ If `energyMonitorDisableSampling` is true, this task will do nothing.
 ### `energyMonitorPostSampleHttp`
 
 This task works like `energyMonitorPostSample`, but instead of printing results to the console, sends
-them to an HTTP server with some metadata. The server should accept POSTs to the configured url like:
+them to an HTTP server with some metadata. The server should accept POSTs to the configured URL, with an HTTP body like:
 
 ```json
 {
