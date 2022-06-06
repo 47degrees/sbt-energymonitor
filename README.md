@@ -8,8 +8,7 @@ In order to use this plugin, you'll need to provide a jar containing `jRAPL` as 
 
 ## Usage
 
-This plugin requires sbt 1.0.0+. It provides three tasks: `energyMonitorPreSample`, `energyMonitorPostSample`, and `energyMonitorPostSampleGitHub`.
-These tasks are controlled by two settings: `energyMonitorDisableSampling` and `energyMonitorOutputFile`.
+This plugin requires sbt 1.0.0+. It provides four tasks: `energyMonitorPreSample`, `energyMonitorPostSample`, `energyMonitorPostSampleHttp`, and `energyMonitorPostSampleGitHub` and appropriate settings for configuring them.
 
 ### `energyMonitorPreSample`
 
@@ -23,6 +22,37 @@ This task reads the initial sample from the path configured in `energyMonitorOut
 and prints calculated energy usage to the console.
 
 If `energyMonitorDisableSampling` is true, this task will do nothing.
+
+### `energyMonitorPostSampleHttp`
+
+This task works like `energyMonitorPostSample`, but instead of printing results to the console, sends
+them to an HTTP server with some metadata. The server should accept POSTs to the configured URL, with an HTTP body like:
+
+```json
+{
+  "joules": 23,
+  "seconds": 8,
+  "organization": "47degrees",
+  "repository": "sbt-energymonitor",
+  "branch": "abcde",
+  "run": 8,
+  "recordedAt": "2022-05-05T10:15:00Z"
+}
+```
+
+Its behavior is controlled by three settings: `energyMonitorPersistenceServerUrl`, and `energyMonitorPersistenceTag`.
+
+However, if `energyMonitorDisableSampling` is `true`, this task will do nothing.
+
+You can see an example usage of this task in the scripted test included in this repository under the `energy-monitor-plugin/src/sbt-test/http-store` directory.
+
+#### `energyMonitorPersistenceServerUrl`
+
+This setting determines where the task should send the information about energy consumption. Its default value is `http://localhost:8080`, which will be correct if you're experimenting locally and using the demo server provided in the `energyMonitorPersistenceApp` module. You _should not use a local server for real testing though_, since the server's energy consumption will also show up in the power consumed by the CPU / memory during your energy tests.
+
+#### `energyMonitorPersistenceTag`
+
+This setting determines whether some arbitrary string will be included with the energy consumption sample. You might want to do this if there's some significant change that you think should explain differences in energy, for instance, "upgrade to cats-effect 3", or "refine types to shrink validation in core business logic," or something similar. You can put whatever information you want in the tag, or nothing at all. Its default value is `None`.
 
 ### `energyMonitorPostSampleGitHub`
 
