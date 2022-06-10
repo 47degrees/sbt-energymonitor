@@ -1,6 +1,6 @@
 libraryDependencies += "org.scala-sbt" %% "scripted-plugin" % sbtVersion.value
 
-addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.10.0")
+addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.10.1")
 addSbtPlugin("com.alejandrohdezma" % "sbt-github-header" % "0.11.2")
 addSbtPlugin("com.alejandrohdezma" % "sbt-github-mdoc" % "0.11.2")
 addSbtPlugin("com.alejandrohdezma" % "sbt-github" % "0.11.2")
