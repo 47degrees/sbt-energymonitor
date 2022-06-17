@@ -7,7 +7,7 @@ ThisBuild / Compile / run / fork := true
 
 lazy val Version = new {
   val caseInsensitive = "1.2.0"
-  val cats = "2.7.0"
+  val cats = "2.8.0"
   val catsEffect = "3.3.12"
   val catsScalacheck = "0.3.1"
   val circe = "0.14.1"
