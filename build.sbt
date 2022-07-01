@@ -17,6 +17,8 @@ lazy val Version = new {
   val fs2 = "3.2.8"
   val github4s = "0.31.0"
   val http4s = "0.23.13"
+  val http4sBlazeClient = "0.23.12"
+  val http4sBlazeServer = "0.23.12"
   val ip4s = "3.1.2"
   val log4cats = "2.3.0"
   val logback = "1.2.11"
@@ -83,7 +85,7 @@ lazy val energyMonitorPlugin =
         "com.47deg" %% "github4s" % Version.github4s,
         "io.circe" %% "circe-core" % Version.circe,
         "io.circe" %% "circe-parser" % Version.circe,
-        "org.http4s" %% "http4s-blaze-client" % Version.http4s,
+        "org.http4s" %% "http4s-blaze-client" % Version.http4sBlazeClient,
         "org.scala-sbt" %% "collections" % sbtVersion.value,
         "org.scala-sbt" %% "core-macros" % sbtVersion.value,
         "org.scala-sbt" %% "main" % sbtVersion.value,
@@ -151,7 +153,7 @@ lazy val energyMonitorPersistenceApp =
         "com.monovore" %%% "decline" % Version.decline,
         "org.http4s" %%% "http4s-core" % Version.http4s,
         "org.http4s" %%% "http4s-ember-server" % Version.http4s,
-        "org.http4s" %%% "http4s-server" % Version.http4s,
+        "org.http4s" %%% "http4s-server" % Version.http4sBlazeServer,
         "org.scalameta" %%% "munit" % Version.munit % Test,
         "org.tpolecat" %%% "natchez-core" % Version.natchez,
         "org.tpolecat" %%% "skunk-core" % Version.skunk,
