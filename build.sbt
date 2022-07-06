@@ -7,14 +7,14 @@ ThisBuild / Compile / run / fork := true
 
 lazy val Version = new {
   val caseInsensitive = "1.2.0"
-  val cats = "2.7.0"
-  val catsEffect = "3.3.12"
+  val cats = "2.8.0"
+  val catsEffect = "3.3.13"
   val catsScalacheck = "0.3.1"
   val circe = "0.14.1"
-  val decline = "2.2.0"
+  val decline = "2.3.0"
   val disciplineMunit = "1.0.9"
-  val flyway = "8.5.13"
-  val fs2 = "3.2.8"
+  val flyway = "8.5.12"
+  val fs2 = "3.2.9"
   val github4s = "0.31.0"
   val http4s = "0.23.12"
   val ip4s = "3.1.2"
@@ -29,7 +29,7 @@ lazy val Version = new {
   val sourcepos = "1.0.1"
   val squants = "1.8.3"
   val testContainersScala = "0.40.8"
-  val weaver = "0.7.12"
+  val weaver = "0.7.13"
 }
 
 addCommandAlias(
