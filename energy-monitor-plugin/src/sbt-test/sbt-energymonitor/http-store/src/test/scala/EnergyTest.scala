@@ -5,8 +5,9 @@ import org.scalatest.flatspec._
 import org.scalatest.matchers._
 
 class EnergyTest extends AnyFlatSpec with should.Matchers {
-  private def countUpTo(acc: Long, n: Long): Unit = 
-    if (acc >= n) { () } else {
+  private def countUpTo(acc: Long, n: Long): Unit =
+    if (acc >= n) { () }
+    else {
       countUpTo(acc + 1L, n)
     }
 
