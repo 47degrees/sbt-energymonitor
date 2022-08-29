@@ -6,7 +6,7 @@ ThisBuild / githubOrganization := "47degrees"
 ThisBuild / Compile / run / fork := true
 
 lazy val Version = new {
-  val caseInsensitive = "1.2.0"
+  val caseInsensitive = "1.3.0"
   val cats = "2.8.0"
   val catsEffect = "3.3.14"
   val catsScalacheck = "0.3.1"
