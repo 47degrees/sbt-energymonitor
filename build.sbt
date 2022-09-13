@@ -6,30 +6,31 @@ ThisBuild / githubOrganization := "47degrees"
 ThisBuild / Compile / run / fork := true
 
 lazy val Version = new {
-  val caseInsensitive = "1.2.0"
+  val caseInsensitive = "1.3.0"
   val cats = "2.8.0"
-  val catsEffect = "3.3.13"
+  val catsEffect = "3.3.14"
   val catsScalacheck = "0.3.1"
   val circe = "0.14.1"
   val decline = "2.3.0"
   val disciplineMunit = "1.0.9"
-  val flyway = "8.5.13"
-  val fs2 = "3.2.10"
-  val github4s = "0.31.0"
-  val http4s = "0.23.12"
+  val flyway = "9.3.0"
+  val fs2 = "3.2.14"
+  val github4s = "0.31.1"
+  val http4s = "0.23.15"
+  val http4sBlazeClient = "0.23.12"
   val ip4s = "3.1.2"
   val log4cats = "2.3.0"
-  val logback = "1.2.11"
+  val logback = "1.4.0"
   val munit = "0.7.29"
   val munitCatsEffect = "1.0.7"
   val natchez = "0.1.6"
-  val postgres = "42.4.0"
+  val postgres = "42.5.0"
   val scalacheckEffect = "1.0.4"
   val skunk = "0.3.1"
   val sourcepos = "1.0.1"
   val squants = "1.8.3"
-  val testContainersScala = "0.40.8"
-  val weaver = "0.7.13"
+  val testContainersScala = "0.40.10"
+  val weaver = "0.7.15"
 }
 
 addCommandAlias(
@@ -83,7 +84,7 @@ lazy val energyMonitorPlugin =
         "com.47deg" %% "github4s" % Version.github4s,
         "io.circe" %% "circe-core" % Version.circe,
         "io.circe" %% "circe-parser" % Version.circe,
-        "org.http4s" %% "http4s-blaze-client" % Version.http4s,
+        "org.http4s" %% "http4s-blaze-client" % Version.http4sBlazeClient,
         "org.scala-sbt" %% "collections" % sbtVersion.value,
         "org.scala-sbt" %% "core-macros" % sbtVersion.value,
         "org.scala-sbt" %% "main" % sbtVersion.value,
