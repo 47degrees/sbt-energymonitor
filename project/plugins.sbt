@@ -1,6 +1,6 @@
 libraryDependencies += "org.scala-sbt" %% "scripted-plugin" % sbtVersion.value
 
-addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.10.1")
+addSbtPlugin("ch.epfl.scala" % "sbt-scalafix" % "0.10.2")
 addSbtPlugin("com.alejandrohdezma" % "sbt-github-header" % "0.11.2")
 addSbtPlugin("com.alejandrohdezma" % "sbt-github-mdoc" % "0.11.2")
 addSbtPlugin("com.alejandrohdezma" % "sbt-github" % "0.11.2")
@@ -11,7 +11,7 @@ addSbtPlugin("de.heikoseeberger" % "sbt-header" % "5.7.0")
 addSbtPlugin("io.github.davidgregory084" % "sbt-tpolecat" % "0.3.1")
 addSbtPlugin("org.portable-scala" % "sbt-crossproject" % "1.2.0")
 addSbtPlugin("org.portable-scala" % "sbt-scalajs-crossproject" % "1.2.0")
-addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.10.1")
+addSbtPlugin("org.scala-js" % "sbt-scalajs" % "1.11.0")
 addSbtPlugin("org.scalameta" % "sbt-mdoc" % "2.3.3")
 addSbtPlugin("org.scalameta" % "sbt-scalafmt" % "2.4.6")
 addSbtPlugin("com.github.sbt" % "sbt-native-packager" % "1.9.11")
