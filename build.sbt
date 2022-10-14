@@ -106,7 +106,7 @@ lazy val energyMonitorPlugin =
     )
 
 lazy val appSettings = Seq(
-  scalaVersion := "2.13.9",
+  scalaVersion := "2.13.10",
   crossScalaVersions := Seq(
     "2.13.8",
     "3.1.2"
