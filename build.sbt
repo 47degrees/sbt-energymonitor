@@ -13,14 +13,14 @@ lazy val Version = new {
   val circe = "0.14.3"
   val decline = "2.3.1"
   val disciplineMunit = "1.0.9"
-  val flyway = "9.3.1"
+  val flyway = "9.5.1"
   val fs2 = "3.3.0"
   val github4s = "0.31.2"
   val http4s = "0.23.16"
   val http4sBlazeClient = "0.23.12"
   val ip4s = "3.1.2"
   val log4cats = "2.3.0"
-  val logback = "1.4.3"
+  val logback = "1.4.4"
   val munit = "0.7.29"
   val munitCatsEffect = "1.0.7"
   val natchez = "0.1.6"
@@ -29,7 +29,7 @@ lazy val Version = new {
   val skunk = "0.3.2"
   val sourcepos = "1.0.1"
   val squants = "1.8.3"
-  val testContainersScala = "0.40.10"
+  val testContainersScala = "0.40.11"
   val weaver = "0.8.0"
 }
 
@@ -106,7 +106,7 @@ lazy val energyMonitorPlugin =
     )
 
 lazy val appSettings = Seq(
-  scalaVersion := "2.13.9",
+  scalaVersion := "2.13.10",
   crossScalaVersions := Seq(
     "2.13.8",
     "3.1.2"
