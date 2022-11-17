@@ -109,7 +109,7 @@ lazy val appSettings = Seq(
   scalaVersion := "2.13.10",
   crossScalaVersions := Seq(
     "2.13.8",
-    "3.1.2"
+    "3.2.1"
   )
 )
 
