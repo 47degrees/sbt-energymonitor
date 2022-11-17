@@ -7,13 +7,13 @@ ThisBuild / Compile / run / fork := true
 
 lazy val Version = new {
   val caseInsensitive = "1.3.0"
-  val cats = "2.8.0"
-  val catsEffect = "3.3.14"
+  val cats = "2.9.0"
+  val catsEffect = "3.4.0"
   val catsScalacheck = "0.3.2"
   val circe = "0.14.3"
   val decline = "2.3.1"
   val disciplineMunit = "1.0.9"
-  val flyway = "9.6.0"
+  val flyway = "9.8.1"
   val fs2 = "3.3.0"
   val github4s = "0.31.2"
   val http4s = "0.23.16"
@@ -109,7 +109,7 @@ lazy val appSettings = Seq(
   scalaVersion := "2.13.10",
   crossScalaVersions := Seq(
     "2.13.8",
-    "3.1.2"
+    "3.2.1"
   )
 )
 
