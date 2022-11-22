@@ -11,10 +11,10 @@ lazy val Version = new {
   val catsEffect = "3.4.1"
   val catsScalacheck = "0.3.2"
   val circe = "0.14.3"
-  val decline = "2.3.1"
+  val decline = "2.4.0"
   val disciplineMunit = "1.0.9"
-  val flyway = "9.8.1"
-  val fs2 = "3.3.0"
+  val flyway = "9.8.2"
+  val fs2 = "3.4.0"
   val github4s = "0.31.2"
   val http4s = "0.23.16"
   val http4sBlazeClient = "0.23.12"
@@ -30,7 +30,7 @@ lazy val Version = new {
   val sourcepos = "1.0.1"
   val squants = "1.8.3"
   val testContainersScala = "0.40.11"
-  val weaver = "0.8.0"
+  val weaver = "0.8.1"
 }
 
 addCommandAlias(
