@@ -30,7 +30,7 @@ lazy val Version = new {
   val sourcepos = "1.1.0"
   val squants = "1.8.3"
   val testContainersScala = "0.40.14"
-  val weaver = "0.8.1"
+  val weaver = "0.8.2"
 }
 
 addCommandAlias(
